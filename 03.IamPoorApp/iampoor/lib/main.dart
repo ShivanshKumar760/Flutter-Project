@@ -23,7 +23,7 @@ void main() {
   runApp(
     MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title:Text("I am Poor"), centerTitle: true, backgroundColor: Colors.blueGrey[900],),
+        appBar: AppBar(title:const Text("I am Poor"), centerTitle: true, backgroundColor: Colors.blueGrey[900],),
         backgroundColor: Colors.blueGrey,
         //body:Center(child: Image(image: NetworkImage('https://media.istockphoto.com/id/176982445/photo/ruby-xl.jpg?s=612x612&w=0&k=20&c=XjNZgXXR6ipGOVkSsV7UNnBbEaD48VbkB3wyKg-ArAk=')))
         body:const Center(child: Image(image: AssetImage('images/coal.png'),
