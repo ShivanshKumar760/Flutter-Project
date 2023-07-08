@@ -111,7 +111,7 @@ class XylophoneApp extends StatelessWidget {
     player.play(AssetSource('note${soundNumber}.wav'));
   }
 
-  Expanded Build({required Color color,required int n})
+  Expanded Build({required Color color,required int n,required String Message})
   {
     return Expanded(
       child: TextButton(style: ButtonStyle(backgroundColor:MaterialStatePropertyAll(color))
@@ -119,7 +119,7 @@ class XylophoneApp extends StatelessWidget {
         {
           playSound(n);
         },
-        child: Text(" "),),
+        child: Text(Message,style:TextStyle(color: Colors.black,fontSize:20.0,fontWeight: FontWeight.bold)),),
     );
   }
   @override
@@ -131,13 +131,13 @@ class XylophoneApp extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-               Build(color: Colors.red,n:1),
-               Build(color: Colors.orange,n:2),
-                Build(color: Colors.yellow,n:3),
-                Build(color:Colors.green,n:4),
-                Build(color: Colors.teal,n:5),
-                Build(color: Colors.purple,n:6),
-                Build(color:Colors.blue,n:7),
+               Build(color: Colors.red,n:1,Message:"R Click Me to play sound 1"),
+               Build(color: Colors.orange,n:2,Message:"O Click Me to play sound 2"),
+                Build(color: Colors.yellow,n:3,Message:"Y Click Me to play sound 3"),
+                Build(color:Colors.green,n:4,Message:"G Click Me to play sound 4"),
+                Build(color: Colors.teal,n:5,Message:"T Click Me to play sound 5"),
+                Build(color: Colors.purple,n:6,Message:"P Click Me to play sound 6"),
+                Build(color:Colors.blue,n:7,Message:"B Click Me to play sound 7"),
               ],
             )
         ),
