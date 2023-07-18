@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Question.dart';
+import 'quiz_brain.dart';
 
 void main() => runApp(Quizzy());
 
@@ -157,7 +158,7 @@ question3: 'A slug\'s blood is green.', true,
 // }
 
 
-/*Now if we see that inside Row() widget children property is a list as it starts with square brackets[]
+/*Now if we see that inside Row() widget children property is a type of list as it starts with square brackets[]
 Now List is collection of similar data type so what we can so do is instead of adding Icon inside children we
 can create a list to store Icon
 Like This :
@@ -237,12 +238,13 @@ class _QuizPageState extends State<QuizPage> {
   which will get assigned for each object and each object will have it own unique copy of member data*/
 
 
-   List<Question> questionBank=
-       [
-         Question(q:"You can lead a cow down stairs but not upstairs?",a:false),
-         Question(q:"Approximately one quartet of human bones are in feet?",a:true),
-         Question(q:"A slug's blood is green?",a:true),
-       ];
+   // List<Question> questionBank=
+   //     [
+   //       Question(q:"You can lead a cow down stairs but not upstairs?",a:false),
+   //       Question(q:"Approximately one quartet of human bones are in feet?",a:true),
+   //       Question(q:"A slug's blood is green?",a:true),
+   //     ];
+  QuizBrain quizBrain=QuizBrain();
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -255,7 +257,7 @@ class _QuizPageState extends State<QuizPage> {
           child: Padding(
             padding: EdgeInsets.all(0.0),
             child: Center(
-              child: Text((questionBank[questionNumber].question)!,
+              child: Text((quizBrain.questionBank[questionNumber].question)!,
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 25.0, color: Colors.white,),),
             ),),),
@@ -264,7 +266,7 @@ class _QuizPageState extends State<QuizPage> {
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child:TextButton(onPressed: (){
-              bool correctAnswer=(questionBank[questionNumber].answer)!;
+              bool correctAnswer=(quizBrain.questionBank[questionNumber].answer)!;
               if(correctAnswer==true)
               {
                 setState(()
@@ -291,7 +293,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: const EdgeInsets.all(15.0),
             child:TextButton(onPressed: ()
             {
-              bool correctAnswer=(questionBank[questionNumber].answer)!;
+              bool correctAnswer=(quizBrain.questionBank[questionNumber].answer)!;
               if(correctAnswer==false)
               {
                 setState(()
@@ -305,7 +307,7 @@ class _QuizPageState extends State<QuizPage> {
                   setState(()
                   {
                     questionNumber++;
-                    scoreKeeper.add(Icon(Icons.check,color: Colors.green,));
+                    scoreKeeper.add(Icon(Icons.close,color: Colors.red,));
                   });
                 }
             },
