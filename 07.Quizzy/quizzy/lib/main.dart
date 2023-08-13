@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'Question.dart';
 import 'quiz_brain.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 void main() => runApp(Quizzy());
 
@@ -244,6 +245,47 @@ class _QuizPageState extends State<QuizPage> {
    //       Question(q:"Approximately one quartet of human bones are in feet?",a:true),
    //       Question(q:"A slug's blood is green?",a:true),
    //     ];
+  void checkAnswer(bool userPickedAnswer) {
+    bool correctAnswer=(quizBrain.getCorrectAnswer());
+      setState(()
+      {
+        // quizBrain.nextQuestion();
+        // scoreKeeper.add(Icon(Icons.check,color: Colors.green,));
+        if (quizBrain.isFinished() == true) {
+          //TODO Step 4 Part A - show an alert using rFlutter_alert,
+
+          //This is the code for the basic alert from the docs for rFlutter Alert:
+          //Alert(context: context, title: "RFLUTTER", desc: "Flutter is awesome.").show();
+
+          //Modified for our purposes:
+          Alert(
+            context: context,
+            title: 'Finished!',
+            desc: 'You\'ve reached the end of the quiz.',
+          ).show();
+
+          //TODO Step 4 Part C - reset the questionNumber,
+          quizBrain.reset();
+
+          //TODO Step 4 Part D - empty out the scoreKeeper.
+          scoreKeeper = [];
+        }
+
+        else {
+          if (userPickedAnswer == correctAnswer)
+          {
+            scoreKeeper.add(Icon(Icons.check, color: Colors.green,));
+          }
+          else {
+            scoreKeeper.add(Icon(Icons.close, color: Colors.red,));
+          }
+          quizBrain.nextQuestion();
+        }
+      });
+
+
+
+  }
   QuizBrain quizBrain=QuizBrain();
   @override
   Widget build(BuildContext context) {
@@ -267,25 +309,26 @@ class _QuizPageState extends State<QuizPage> {
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child:TextButton(onPressed: (){
-              bool correctAnswer=(quizBrain.getCorrectAnswer());
-              if(correctAnswer==true)
-              {
-                setState(()
-                {
-                  quizBrain.nextQuestion();
-                  scoreKeeper.add(Icon(Icons.check,color: Colors.green,));
-                });
-
-              }
-              else
-                {
-                  setState(()
-                  {
-                    // questionNumber++;
-                    quizBrain.nextQuestion();
-                    scoreKeeper.add(Icon(Icons.close,color: Colors.red,));
-                  });
-                }
+              // bool correctAnswer=(quizBrain.getCorrectAnswer());
+              // if(correctAnswer==true)
+              // {
+              //   setState(()
+              //   {
+              //     quizBrain.nextQuestion();
+              //     scoreKeeper.add(Icon(Icons.check,color: Colors.green,));
+              //   });
+              //
+              // }
+              // else
+              //   {
+              //     setState(()
+              //     {
+              //       // questionNumber++;
+              //       quizBrain.nextQuestion();
+              //       scoreKeeper.add(Icon(Icons.close,color: Colors.red,));
+              //     });
+              //   }
+              checkAnswer(true);
             },style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.green)),
               child:const Text("True", style: TextStyle(color: Colors.white, fontSize: 20.0,),),),
           ),),
@@ -295,25 +338,26 @@ class _QuizPageState extends State<QuizPage> {
             padding: const EdgeInsets.all(15.0),
             child:TextButton(onPressed: ()
             {
-              bool correctAnswer=(quizBrain.getCorrectAnswer());
-              if(correctAnswer==false)
-              {
-                setState(()
-                {
-                // questionNumber++;
-                  quizBrain.nextQuestion();
-                scoreKeeper.add(Icon(Icons.check,color: Colors.green,));
-                });
-              }
-              else
-                {
-                  setState(()
-                  {
-                    // questionNumber++;
-                    quizBrain.nextQuestion();
-                    scoreKeeper.add(Icon(Icons.close,color: Colors.red,));
-                  });
-                }
+              // bool correctAnswer=(quizBrain.getCorrectAnswer());
+              // if(correctAnswer==false)
+              // {
+              //   setState(()
+              //   {
+              //   // questionNumber++;
+              //     quizBrain.nextQuestion();
+              //   scoreKeeper.add(Icon(Icons.check,color: Colors.green,));
+              //   });
+              // }
+              // else
+              //   {
+              //     setState(()
+              //     {
+              //       // questionNumber++;
+              //       quizBrain.nextQuestion();
+              //       scoreKeeper.add(Icon(Icons.close,color: Colors.red,));
+              //     });
+              //   }
+              checkAnswer(false);
             },
               style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.red)),
               child:const Text("False",
