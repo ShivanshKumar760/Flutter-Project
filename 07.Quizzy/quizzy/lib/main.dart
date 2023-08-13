@@ -270,6 +270,7 @@ class _QuizPageState extends State<QuizPage> {
 
           //TODO Step 4 Part D - empty out the scoreKeeper.
           scoreKeeper = [];
+          score=0;
         }
 
         else {
