@@ -245,6 +245,7 @@ class _QuizPageState extends State<QuizPage> {
    //       Question(q:"Approximately one quartet of human bones are in feet?",a:true),
    //       Question(q:"A slug's blood is green?",a:true),
    //     ];
+  int score=0;
   void checkAnswer(bool userPickedAnswer) {
     bool correctAnswer=(quizBrain.getCorrectAnswer());
       setState(()
@@ -261,7 +262,7 @@ class _QuizPageState extends State<QuizPage> {
           Alert(
             context: context,
             title: 'Finished!',
-            desc: 'You\'ve reached the end of the quiz.',
+            desc: 'You\'ve reached the end of the quiz,\nAnd your score is $score',
           ).show();
 
           //TODO Step 4 Part C - reset the questionNumber,
@@ -275,6 +276,7 @@ class _QuizPageState extends State<QuizPage> {
           if (userPickedAnswer == correctAnswer)
           {
             scoreKeeper.add(Icon(Icons.check, color: Colors.green,));
+            score++;
           }
           else {
             scoreKeeper.add(Icon(Icons.close, color: Colors.red,));
